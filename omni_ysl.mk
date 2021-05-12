@@ -23,8 +23,9 @@ $(call inherit-product, build/target/product/embedded.mk)
 $(call inherit-product, vendor/omni/config/common.mk)
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.hardware.keystore=msm8953 \
     ro.treble.enabled=true \
+    ro.hardware.keystore=msm8953 \
+    ro.hardware.gatekeeper=msm8953 \
     ro.bootimage.build.date.utc=1514797200 \
     ro.build.date.utc=1514797200
 
