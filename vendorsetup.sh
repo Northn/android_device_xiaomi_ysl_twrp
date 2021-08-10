@@ -38,22 +38,24 @@ if [ -z "$1" -a -z "$FOX_BUILD_DEVICE" ]; then
 fi
 
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
+    # Note: Don't forget to export FOX_VERSION="R11.1_*" where * is a ID of release.
+    
     # Maintainership compliance guideline flags
     export LC_ALL="C"
     export ALLOW_MISSING_DEPENDENCIES=true
     export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
 
-    # CCache support
-    export USE_CCACHE="1"
-
     # Magisk
-    export OF_USE_NEW_MAGISKBOOT=1
-    export OF_FORCE_MAGISKBOOT_BOOT_PATCH_MIUI=1
+    export OF_USE_MAGISKBOOT=1
+    export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
 
     # MIUI
     export OF_NO_MIUI_OTA_VENDOR_BACKUP=1
-    export OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR=1
     export OF_DISABLE_MIUI_OTA_BY_DEFAULT=1
+
+    # OTA for Custom ROMs
+    export OF_SUPPORT_ALL_BLOCK_OTA_UPDATES=1
+    export OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR=1
 
     # MTP & adb enabled only after passing the correct password
     export FOX_ADVANCED_SECURITY=1
@@ -62,12 +64,13 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export OF_SCREEN_H=2160
 
     # Maintainer
-    export OF_MAINTAINER="Andrey"
+    export OF_MAINTAINER="Andrey Norton"
 
     # Old and useless
     export FOX_DELETE_AROMAFM=1
 
-    # Updated binaries
+    # Some binaries
+    export FOX_USE_NANO_EDITOR=1
     export FOX_REPLACE_BUSYBOX_PS=1
     export FOX_USE_BASH_SHELL=1
     export FOX_ASH_IS_BASH=1
@@ -95,7 +98,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     # FBE
     export OF_KEEP_DM_VERITY_FORCED_ENCRYPTION=1
     export OF_SKIP_MULTIUSER_FOLDERS_BACKUP=1
-    export FOX_VARIANT=FBE
+    export FOX_VARIANT="FBE"
 
     if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
         export | grep "FOX" >> $FOX_BUILD_LOG_FILE
