@@ -46,17 +46,17 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     # CCache support
     export USE_CCACHE="1"
 
-    # R11 build
-    export FOX_R11=1
-
-    export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
+    # Magisk
     export OF_USE_NEW_MAGISKBOOT=1
     export OF_FORCE_MAGISKBOOT_BOOT_PATCH_MIUI=1
+
+    # MIUI
     export OF_NO_MIUI_OTA_VENDOR_BACKUP=1
     export OF_FIX_OTA_UPDATE_MANUAL_FLASH_ERROR=1
-    export FOX_ADVANCED_SECURITY=1
-    export OF_USE_TWRP_SAR_DETECT=1
     export OF_DISABLE_MIUI_OTA_BY_DEFAULT=1
+
+    # MTP & adb enabled only after passing the correct password
+    export FOX_ADVANCED_SECURITY=1
 
     # 18:9, so 18 * 120 = 2160
     export OF_SCREEN_H=2160
@@ -64,16 +64,17 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     # Maintainer
     export OF_MAINTAINER="Andrey"
 
-    export FOX_USE_NANO_EDITOR=1
-    export FOX_USE_TAR_BINARY=1
-    export FOX_REPLACE_BUSYBOX_PS=1
+    # Old and useless
     export FOX_DELETE_AROMAFM=1
+
+    # Updated binaries
+    export FOX_REPLACE_BUSYBOX_PS=1
     export FOX_USE_BASH_SHELL=1
     export FOX_ASH_IS_BASH=1
-    export FOX_USE_GREP_BINARY=1
     export FOX_USE_SED_BINARY=1
     export FOX_USE_XZ_UTILS=1
 
+    # Check for attempt to overwrite recovery
     export OF_CHECK_OVERWRITE_ATTEMPTS=1
 
     # Not exists on ysl
@@ -90,6 +91,11 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
     # Official latest stable Magisk module
     export FOX_USE_SPECIFIC_MAGISK_ZIP="~/Magisk/Magisk-v23.0.zip"
+
+    # FBE
+    export OF_KEEP_DM_VERITY_FORCED_ENCRYPTION=1
+    export OF_SKIP_MULTIUSER_FOLDERS_BACKUP=1
+    export FOX_VARIANT=FBE
 
     if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
         export | grep "FOX" >> $FOX_BUILD_LOG_FILE
