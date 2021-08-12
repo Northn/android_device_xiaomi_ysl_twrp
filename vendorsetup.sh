@@ -98,6 +98,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     # FBE
     export OF_KEEP_DM_VERITY_FORCED_ENCRYPTION=1
     export OF_SKIP_MULTIUSER_FOLDERS_BACKUP=1
+    export OF_DONT_PATCH_ENCRYPTED_DEVICE=1
     export FOX_VARIANT="FBE"
 
     if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
